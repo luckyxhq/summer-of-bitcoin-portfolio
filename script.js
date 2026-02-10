@@ -3,7 +3,7 @@
 function typeWriter(element, text, speed = 50) {
     let i = 0;
     element.textContent = '';
-    
+
     function type() {
         if (i < text.length) {
             element.textContent += text.charAt(i);
@@ -11,7 +11,7 @@ function typeWriter(element, text, speed = 50) {
             setTimeout(type, speed);
         }
     }
-    
+
     type();
 }
 
@@ -21,7 +21,7 @@ function animateCounter(element, target, duration = 2000) {
     const start = 0;
     const increment = target / (duration / 16); // 60fps
     let current = start;
-    
+
     const timer = setInterval(() => {
         current += increment;
         if (current >= target) {
@@ -37,11 +37,11 @@ function animateCounter(element, target, duration = 2000) {
 
 function animateSkillBars() {
     const progressBars = document.querySelectorAll('.progress-fill');
-    
+
     progressBars.forEach(bar => {
         const progress = bar.getAttribute('data-progress');
         bar.style.setProperty('--progress-width', progress + '%');
-        
+
         // Add animated class to trigger CSS transition
         setTimeout(() => {
             bar.classList.add('animated');
@@ -57,7 +57,7 @@ function setupIntersectionObserver() {
         threshold: 0.3,
         rootMargin: '0px'
     };
-    
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -69,22 +69,22 @@ function setupIntersectionObserver() {
                         animateCounter(stat, target);
                     });
                 }
-                
+
                 // Animate skill bars when skills section is in view
                 if (entry.target.classList.contains('skills')) {
                     animateSkillBars();
                 }
-                
+
                 // Unobserve after animation
                 observer.unobserve(entry.target);
             }
         });
     }, options);
-    
+
     // Observe sections
     const hero = document.querySelector('.hero');
     const skills = document.querySelector('.skills');
-    
+
     if (hero) observer.observe(hero);
     if (skills) observer.observe(skills);
 }
@@ -93,22 +93,22 @@ function setupIntersectionObserver() {
 
 function setupSmoothScroll() {
     const links = document.querySelectorAll('a[href^="#"]');
-    
+
     links.forEach(link => {
-        link.addEventListener('click', function(e) {
+        link.addEventListener('click', function (e) {
             const href = this.getAttribute('href');
-            
+
             // Don't prevent default for non-section links
             if (href === '#') return;
-            
+
             e.preventDefault();
-            
+
             const targetId = href.substring(1);
             const targetElement = document.getElementById(targetId);
-            
+
             if (targetElement) {
                 const offsetTop = targetElement.offsetTop - 80; // 80px offset for better positioning
-                
+
                 window.scrollTo({
                     top: offsetTop,
                     behavior: 'smooth'
@@ -124,7 +124,7 @@ function setupParallaxEffect() {
     window.addEventListener('scroll', () => {
         const scrolled = window.pageYOffset;
         const parallaxElements = document.querySelectorAll('.hero::before');
-        
+
         parallaxElements.forEach(element => {
             const speed = 0.5;
             element.style.transform = `translate(-50%, calc(-50% + ${scrolled * speed}px))`;
@@ -137,13 +137,13 @@ function setupParallaxEffect() {
 function setupHoverEffects() {
     // Add ripple effect to buttons
     const buttons = document.querySelectorAll('.btn');
-    
+
     buttons.forEach(button => {
-        button.addEventListener('mouseenter', function(e) {
+        button.addEventListener('mouseenter', function (e) {
             const rect = this.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
-            
+
             const ripple = document.createElement('span');
             ripple.style.position = 'absolute';
             ripple.style.left = x + 'px';
@@ -154,11 +154,11 @@ function setupHoverEffects() {
             ripple.style.background = 'rgba(255, 255, 255, 0.3)';
             ripple.style.transform = 'translate(-50%, -50%)';
             ripple.style.animation = 'ripple 0.6s ease-out';
-            
+
             this.style.position = 'relative';
             this.style.overflow = 'hidden';
             this.appendChild(ripple);
-            
+
             setTimeout(() => ripple.remove(), 600);
         });
     });
@@ -183,31 +183,31 @@ document.addEventListener('DOMContentLoaded', () => {
     // Tagline typing effect
     const taglineElement = document.getElementById('tagline');
     const taglineText = 'First-Year CS Student | Open Source Contributor | Building the Decentralized Future';
-    
+
     if (taglineElement) {
         setTimeout(() => {
             typeWriter(taglineElement, taglineText, 50);
         }, 500);
     }
-    
+
     // Setup observers and effects
     setupIntersectionObserver();
     setupSmoothScroll();
     setupHoverEffects();
-    
+
     // Add entrance animations
     const heroContent = document.querySelector('.hero-content');
     if (heroContent) {
         heroContent.style.opacity = '0';
         heroContent.style.transform = 'translateY(30px)';
-        
+
         setTimeout(() => {
             heroContent.style.transition = 'all 1s cubic-bezier(0.4, 0, 0.2, 1)';
             heroContent.style.opacity = '1';
             heroContent.style.transform = 'translateY(0)';
         }, 200);
     }
-    
+
     // Animate sections on scroll
     const sections = document.querySelectorAll('section');
     const sectionObserver = new IntersectionObserver((entries) => {
@@ -218,7 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }, { threshold: 0.1 });
-    
+
     sections.forEach(section => {
         section.style.opacity = '0';
         section.style.transform = 'translateY(30px)';
@@ -274,9 +274,9 @@ document.head.appendChild(focusStyle);
 
 // ==================== CONSOLE MESSAGE ====================
 
-console.log('%c🚀 Summer of Bitcoin Portfolio', 
+console.log('%c🚀 Summer of Bitcoin Portfolio',
     'font-size: 20px; font-weight: bold; color: #F7931A;');
-console.log('%cBuilt with passion by Lucky Singh', 
+console.log('%cBuilt with passion by Mann Singh',
     'font-size: 14px; color: #8B5CF6;');
-console.log('%c🔗 GitHub: https://github.com/luckyxhq', 
+console.log('%c🔗 GitHub: https://github.com/luckyxhq',
     'font-size: 12px; color: #A0A0B8;');

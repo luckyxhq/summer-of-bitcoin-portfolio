@@ -1,4 +1,4 @@
-# Lucky Singh - Summer of Bitcoin 2026 Portfolio
+# Mann Singh - Summer of Bitcoin 2026 Portfolio
 
 A modern, premium portfolio website showcasing my journey as a developer and my passion for Bitcoin and decentralized systems.
 
@@ -82,4 +82,4 @@ MIT License - feel free to use this as inspiration for your own portfolio!
 
 ---
 
-**Built with ❤️ and ₿** by Lucky Singh
+**Built with ❤️ and ₿** by Mann Singh
